@@ -28,13 +28,13 @@ void circulo(int cx, int cy) {
 void desenhar() {
     //horizontal, vertical
     int  tremFrontalBase[2]={ 200,500 };
-    int tremFrontalFinal[2]={ 200,450 };
+    int tremFrontalFinal[2]={ 200,475 };
 
     int  tremTraseiro1Base[2]={ 650,500 };
-    int tremTraseiro1Final[2]={ 650,450 };
+    int tremTraseiro1Final[2]={ 650,475 };
 
     int  tremTraseiro2Base[2]={ 600,500 };
-    int tremTraseiro2Final[2]={ 600,450 };
+    int tremTraseiro2Final[2]={ 600,475 };
 
     int bico[2]={ 125,575 };
     int centroBico[2]={ 200,575 };
@@ -54,7 +54,9 @@ void desenhar() {
     int  estabilizadorVerticalTopoTrazeiro[2]={870,831};
     
     glClear(GL_COLOR_BUFFER_BIT);
-    /*glColor3f(1.0, 1.0, 1.0);
+    
+    /*Pontos estabilizador
+    glColor3f(1.0, 1.0, 1.0);
     glPointSize(5);
     glBegin(GL_POINTS);
     glVertex2iv(estabilizadorVerticalBaseCauda);
@@ -62,12 +64,20 @@ void desenhar() {
     glVertex2iv(estabilizadorVerticalTopoTrazeiro);
     glVertex2iv(estabilizadorVerticalTopoFrente);
     glEnd();*/
-    //baixo, branco
-    /*Pontos relevantes 
+    
+    /*Pontos bico
     glColor3f(1.0, 1.0, 1.0);
     glPointSize(5);
     glBegin(GL_POINTS);
+    glVertex2iv(bico);
+    glVertex2iv(centroBico);
+    glEnd();*/
+    
+    //Pontos relevantes
     //baixo, branco
+    glColor3f(1.0, 1.0, 1.0);
+    glPointSize(5);
+    glBegin(GL_POINTS);
     int vetAux[2];
     glColor3f(1.0, 1.0, 1.0);
     vetAux[1] = 500;
@@ -81,11 +91,32 @@ void desenhar() {
     for (int i = 200; i < 800; i += 50) {
         vetAux[0] = i;
         glVertex2iv(vetAux);
-    //bico
-    glVertex2iv(bico);
-    glVertex2iv(centroBico);
+    }
     glEnd();
-    }*/
+    
+    vetAux[0]=240;
+    vetAux[1]=630;
+    //janela 1
+    glLineWidth(_ESPESSURA_); // so funciona antes do Begin
+    glBegin(GL_LINES);
+    
+    glVertex2iv(vetAux);
+    vetAux[0]=260;
+    glVertex2iv(vetAux);
+    
+    glVertex2iv(vetAux);
+    vetAux[1]=610;
+    glVertex2iv(vetAux);
+    
+    glVertex2iv(vetAux);
+    vetAux[0]=240;
+    glVertex2iv(vetAux);
+    
+    glVertex2iv(vetAux);
+    vetAux[1]=630;
+    glVertex2iv(vetAux);
+    
+    glEnd();
     
     //curva bico
     GLfloat x, y, ang;
@@ -149,9 +180,9 @@ void desenhar() {
     
     glEnd();
 
-    circulo(200, 435);
-    circulo(600, 435);
-    circulo(650, 435);   
+    circulo(200, 460);
+    circulo(600, 460);
+    circulo(650, 460);   
 
     glFlush();
 }
