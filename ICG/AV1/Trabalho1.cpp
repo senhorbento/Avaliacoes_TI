@@ -11,9 +11,58 @@ void inicializar() {
     gluOrtho2D(0, 1000, 0, 1000);
 }
 
+void janelaPassageiros(){
+    int vetAux[2];
+    
+    glColor3f(0.0, 0.0, 0.0);
+    glLineWidth(_ESPESSURA_); // so funciona antes do Begin
+
+    glBegin(GL_LINES);
+    
+    
+    for(int i=2;i<12;i++){
+        vetAux[0]=140+(50*i);
+        vetAux[1]=630;
+        
+        glVertex2iv(vetAux);
+        vetAux[0]=160+(50*i);
+        glVertex2iv(vetAux);
+        
+        glVertex2iv(vetAux);
+        vetAux[1]=610;
+        glVertex2iv(vetAux);
+        
+        glVertex2iv(vetAux);
+        vetAux[0]=140+(50*i);
+        glVertex2iv(vetAux);
+        
+        glVertex2iv(vetAux);
+        vetAux[1]=630;
+        glVertex2iv(vetAux);
+    }
+    
+    glEnd();
+}
+
+void tremPouso(int pos){
+     int haste[2]={pos,500};
+     
+     glColor3f(0.0, 0.0, 0.0);
+     glLineWidth(_ESPESSURA_); // so funciona antes do Begin
+     
+     glBegin(GL_LINES);
+     
+     glVertex2iv(haste);
+     haste[1]-=25;
+     glVertex2iv(haste);
+     
+     glEnd();
+     
+}
+
 void circulo(int cx, int cy) {
     GLfloat x, y, ang;
-    glColor3f(0.0, 0.0, 1.0); //azul
+    glColor3f(0.0, 0.0, 0.0);
     glLineWidth(_ESPESSURA_);
     glBegin(GL_LINE_LOOP);
     for (int i = 0; i < 360; i++) {
@@ -27,15 +76,6 @@ void circulo(int cx, int cy) {
 
 void desenhar() {
     //horizontal, vertical
-    int  tremFrontalBase[2]={ 200,500 };
-    int tremFrontalFinal[2]={ 200,475 };
-
-    int  tremTraseiro1Base[2]={ 650,500 };
-    int tremTraseiro1Final[2]={ 650,475 };
-
-    int  tremTraseiro2Base[2]={ 600,500 };
-    int tremTraseiro2Final[2]={ 600,475 };
-
     int bico[2]={ 125,575 };
     int centroBico[2]={ 200,575 };
 
@@ -73,7 +113,7 @@ void desenhar() {
     glVertex2iv(centroBico);
     glEnd();*/
     
-    //Pontos relevantes
+    /*Pontos relevantes
     //baixo, branco
     glColor3f(1.0, 1.0, 1.0);
     glPointSize(5);
@@ -92,35 +132,11 @@ void desenhar() {
         vetAux[0] = i;
         glVertex2iv(vetAux);
     }
-    glEnd();
-    
-    vetAux[0]=240;
-    vetAux[1]=630;
-    //janela 1
-    glLineWidth(_ESPESSURA_); // so funciona antes do Begin
-    glBegin(GL_LINES);
-    
-    glVertex2iv(vetAux);
-    vetAux[0]=260;
-    glVertex2iv(vetAux);
-    
-    glVertex2iv(vetAux);
-    vetAux[1]=610;
-    glVertex2iv(vetAux);
-    
-    glVertex2iv(vetAux);
-    vetAux[0]=240;
-    glVertex2iv(vetAux);
-    
-    glVertex2iv(vetAux);
-    vetAux[1]=630;
-    glVertex2iv(vetAux);
-    
-    glEnd();
-    
+    glEnd();*/
+
     //curva bico
     GLfloat x, y, ang;
-    glColor3f(0.0, 0.0, 1.0); //azul
+    glColor3f(0.0, 0.0, 0.0);
     glLineWidth(_ESPESSURA_);
     glBegin(GL_LINE_LOOP);
     for (int i = 270; i > 89; i--) {
@@ -129,59 +145,49 @@ void desenhar() {
         y = centroBico[1] + (sin(ang) * 75);
         glVertex2f(x, y);
     }
+
+    //fuselagem
+    glVertex2iv(inicioFuselagemSuperior);
+    glVertex2iv(finalFuselagemSuperior);
+
+    //cauda
+    glVertex2iv(finalFuselagemSuperior);
+    glVertex2iv(caudaSuperior);
+    
+    glVertex2iv(caudaSuperior);
+    glVertex2iv(caudaInferior);
+    
+    glVertex2iv(caudaInferior);
+    glVertex2iv(finalFuselagemInferior);
+    
+    glVertex2iv(finalFuselagemInferior);
+    glVertex2iv(inicioFuselagemInferior);    
+    
     glEnd();
     
     //desenhar linhas com variavel
     glLineWidth(_ESPESSURA_); // so funciona antes do Begin
     glBegin(GL_LINES);
-
-    //cauda
-    glVertex2iv(caudaSuperior);
-    glVertex2iv(caudaInferior);
     
-    //estabilizar vertical
-    glVertex2iv(estabilizadorVerticalBaseCauda);
-    glVertex2iv(estabilizadorVerticalTopoTrazeiro);
+    //Estabilizador vertical
+    glVertex2iv(estabilizadorVerticalBaseFuselagem);
+    glVertex2iv(estabilizadorVerticalTopoFrente);
     
     glVertex2iv(estabilizadorVerticalTopoFrente);
     glVertex2iv(estabilizadorVerticalTopoTrazeiro);
     
-    glVertex2iv(estabilizadorVerticalBaseFuselagem);
-    glVertex2iv(estabilizadorVerticalTopoFrente);    
-
-    //trem frontal haste
-    glVertex2iv(tremFrontalBase);
-    glVertex2iv(tremFrontalFinal);
-
-    //Trem traseiro haste 1
-    glVertex2iv(tremTraseiro1Base);
-    glVertex2iv(tremTraseiro1Final);
-
-    //Trem traseiro haste 2
-    glVertex2iv(tremTraseiro2Base);
-    glVertex2iv(tremTraseiro2Final);
-
-    //cauda
-    glVertex2iv(caudaSuperior);
-    glVertex2iv(caudaInferior);
-
-    glVertex2iv(caudaInferior);
-    glVertex2iv(finalFuselagemInferior);
-
-    glVertex2iv(caudaSuperior);
-    glVertex2iv(finalFuselagemSuperior);
-
-    //fuselagem
-    glVertex2iv(finalFuselagemSuperior);
-    glVertex2iv(inicioFuselagemSuperior);
-
-    glVertex2iv(finalFuselagemInferior);
-    glVertex2iv(inicioFuselagemInferior);
+    glVertex2iv(estabilizadorVerticalTopoTrazeiro);
+    glVertex2iv(estabilizadorVerticalBaseCauda);
     
     glEnd();
-
+    
+    janelaPassageiros();
+    
+    tremPouso(200);
     circulo(200, 460);
+    tremPouso(600);
     circulo(600, 460);
+    tremPouso(650);
     circulo(650, 460);   
 
     glFlush();
