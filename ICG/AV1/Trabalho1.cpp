@@ -27,33 +27,46 @@ void circulo(int cx, int cy) {
 
 void desenhar() {
     //horizontal, vertical
-    int tremFrontalBase[2] { 200,500 };
-    int tremFrontalFinal[2]{ 200,450 };
+    int  tremFrontalBase[2]={ 200,500 };
+    int tremFrontalFinal[2]={ 200,450 };
 
-    int tremTraseiro1Base[2] { 650,500 };
-    int tremTraseiro1Final[2]{ 650,450 };
+    int  tremTraseiro1Base[2]={ 650,500 };
+    int tremTraseiro1Final[2]={ 650,450 };
 
-    int tremTraseiro2Base[2] { 600,500 };
-    int tremTraseiro2Final[2]{ 600,450 };
+    int  tremTraseiro2Base[2]={ 600,500 };
+    int tremTraseiro2Final[2]={ 600,450 };
 
-    int bico[2]{ 125,575 };
-    int centroBico[2]{ 200,575 };
+    int bico[2]={ 125,575 };
+    int centroBico[2]={ 200,575 };
 
-    int caudaSuperior[2]{ 900,590 };
-    int caudaInferior[2]{ 900,560 };
+    int caudaSuperior[2]={ 900,625 };
+    int caudaInferior[2]={ 900,590 };
     
-    int inicioFuselagemSuperior[2]{ 200,650 };
-    int finalFuselagemSuperior[2] { 800,650 };
+    int inicioFuselagemSuperior[2]={ 200,650 };
+    int  finalFuselagemSuperior[2]={ 800,650 };
 
-    int inicioFuselagemInferior[2]{ 200,500 };
-    int finalFuselagemInferior[2] { 800,500 };
-
+    int inicioFuselagemInferior[2]={ 200,500 };
+    int  finalFuselagemInferior[2]={ 775,500 };
+    
+    int estabilizadorVerticalBaseFuselagem[2]={750,650};
+    int     estabilizadorVerticalBaseCauda[2]={870,631};
+    int    estabilizadorVerticalTopoFrente[2]={840,831};
+    int  estabilizadorVerticalTopoTrazeiro[2]={870,831};
+    
     glClear(GL_COLOR_BUFFER_BIT);
+    /*glColor3f(1.0, 1.0, 1.0);
+    glPointSize(5);
+    glBegin(GL_POINTS);
+    glVertex2iv(estabilizadorVerticalBaseCauda);
+    glVertex2iv(estabilizadorVerticalBaseFuselagem);
+    glVertex2iv(estabilizadorVerticalTopoTrazeiro);
+    glVertex2iv(estabilizadorVerticalTopoFrente);
+    glEnd();*/
+    //baixo, branco
     /*Pontos relevantes 
     glColor3f(1.0, 1.0, 1.0);
     glPointSize(5);
     glBegin(GL_POINTS);
-
     //baixo, branco
     int vetAux[2];
     glColor3f(1.0, 1.0, 1.0);
@@ -62,7 +75,6 @@ void desenhar() {
         vetAux[0] = i;
         glVertex2iv(vetAux);
     }
-
     //cima, vermelho
     glColor3f(1.0, 0.0, 0.0);
     vetAux[1] = 650;
@@ -95,6 +107,16 @@ void desenhar() {
     //cauda
     glVertex2iv(caudaSuperior);
     glVertex2iv(caudaInferior);
+    
+    //estabilizar vertical
+    glVertex2iv(estabilizadorVerticalBaseCauda);
+    glVertex2iv(estabilizadorVerticalTopoTrazeiro);
+    
+    glVertex2iv(estabilizadorVerticalTopoFrente);
+    glVertex2iv(estabilizadorVerticalTopoTrazeiro);
+    
+    glVertex2iv(estabilizadorVerticalBaseFuselagem);
+    glVertex2iv(estabilizadorVerticalTopoFrente);    
 
     //trem frontal haste
     glVertex2iv(tremFrontalBase);
@@ -140,7 +162,7 @@ int main(int argc, char *argv[]){
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
     glutInitWindowSize(800, 600);
     glutInitWindowPosition(10, 10);
-    glutCreateWindow("Testando");
+    glutCreateWindow("Aviao");
 
     glutDisplayFunc(desenhar);
     inicializar();
