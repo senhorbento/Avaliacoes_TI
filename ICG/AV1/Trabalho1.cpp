@@ -93,7 +93,7 @@ void desenhar() {
     int estabilizadorVerticalBaseFuselagem[2] = { 750,650 };
     int     estabilizadorVerticalBaseCauda[2] = { 870,631 };
     int    estabilizadorVerticalTopoFrente[2] = { 840,831 };
-    int  estabilizadorVerticalTopoTrazeiro[2] = { 870,831 };
+    int  estabilizadorVerticalTopoTraseiro[2] = { 870,831 };
 
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -103,7 +103,7 @@ void desenhar() {
     glBegin(GL_POINTS);
     glVertex2iv(estabilizadorVerticalBaseCauda);
     glVertex2iv(estabilizadorVerticalBaseFuselagem);
-    glVertex2iv(estabilizadorVerticalTopoTrazeiro);
+    glVertex2iv(estabilizadorVerticalTopoTraseiro);
     glVertex2iv(estabilizadorVerticalTopoFrente);
     glEnd();*/
 
@@ -178,9 +178,9 @@ void desenhar() {
         glVertex2iv(estabilizadorVerticalTopoFrente);
 
         glVertex2iv(estabilizadorVerticalTopoFrente);
-        glVertex2iv(estabilizadorVerticalTopoTrazeiro);
+        glVertex2iv(estabilizadorVerticalTopoTraseiro);
 
-        glVertex2iv(estabilizadorVerticalTopoTrazeiro);
+        glVertex2iv(estabilizadorVerticalTopoTraseiro);
         glVertex2iv(estabilizadorVerticalBaseCauda);
 
     glEnd();
