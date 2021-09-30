@@ -1,8 +1,9 @@
 Uma empresa mantém os dados de seus contados em cartões e deseja um sistema de software para facilitar o cadastramento e localização de contatos. Os contatos podem ser de quatro tipos: fornecedores, clientes, pessoais e outros.  
+
 Os dados do fornecedor são: nome, CNPJ, email, e telefone fixo e FAX.  
-Os contatos do cliente são: nome, CNPJ ou CPF, telefone residencial, telefone do trabalho e telefone celular e FAX.  
-Os contatos pessoais possuem os seguintes dados: nome, email, telefone fixo e telefone celular.  
-Outros tipos de contatos possuem os seguintes dados: nome, email e telefone.  
+Os dados do cliente são: nome, CNPJ ou CPF, telefone residencial, telefone do trabalho e telefone celular e FAX.  
+Os dados de contatos pessoais são: nome, email, telefone fixo e telefone celular.  
+Os dados de outros são: nome, email e telefone.  
 
 Crie um sistema que permita o usuário a realizar inclusão, alteração, localização e exclusão dos diferentes tipos de contatos. 
 
