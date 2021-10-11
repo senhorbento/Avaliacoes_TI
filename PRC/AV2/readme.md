@@ -1,4 +1,4 @@
-Exercicios:
+# Exercicios:
 
 1-(2.5) Fazer uma agenda de contatos, onde deve ser possivel realizar as seguintes operacoes:
   1. inserir um contato
