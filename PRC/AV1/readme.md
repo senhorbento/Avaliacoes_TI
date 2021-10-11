@@ -1,4 +1,4 @@
-Exercicios:
+# Exercicios:
 
 1- faça um programa para ler um numero inteiro positivo e informe se ele é primo
    assumimos que para este exercicio que o numero 1 não é primo.
@@ -18,19 +18,20 @@ Exercicios:
    caso nao seja possivel multiplicar escreva "Matrizes incompativeis para a multiplicacao!"   
      
 6- Faça um program que mostre um cardapio, onde o usuario escolhe pelo numero, depois entra com a quantidade
-   e o programa mostra o total a pagar. O programa so encerra quando digita-se 0.
-   Cardapio
+   e o programa mostra o total a pagar. O programa so encerra quando digita-se 0.  
+~~~
+   Cardapio  
      1 - Misto Quente    R$ 4.50
      2 - Queijo Quente   R$ 4.00
      3 - Hamburguer      R$ 6.00
      4 - Eggburguer      R$ 7.00
      5 - Podrão          R$ 9.00
      0 - Sair
-
+~~~
 7- Faça um programa que leia n e depois os dados de n alunos (no maximo 100), 
    ao final o programa deve listar o nome de todos os alunos com media maior que a media da turma.
    Dados dos alunos: Nome 30 caracteres, Nota1 e Nota2 reais.
-                     media = (Nota1 + 2*Nota2) / 3
+                     media = (Nota1 + 2 * Nota2) / 3
 
 8- Faça um programa para ler dois numeros inteiros positivos e informe se eles são amigos
    numeros amigos são numeros que a soma dos divisores de um é igual ao valor do outro.
