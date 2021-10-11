@@ -1,4 +1,6 @@
-Uma empresa mantém os dados de seus contados em cartões e deseja um sistema de software para facilitar o cadastramento e localização de contatos. Os contatos podem ser de quatro tipos: fornecedores, clientes, pessoais e outros.  
+# Cadastro de contatos
+
+Uma empresa mantém os dados de seus contatos em cartões e deseja um sistema de software para facilitar o cadastramento e localização de contatos. Os contatos podem ser de quatro tipos: fornecedores, clientes, pessoais e outros.  
 
 Os dados do fornecedor são: nome, CNPJ, email, e telefone fixo e FAX.  
 Os dados do cliente são: nome, CNPJ ou CPF, telefone residencial, telefone do trabalho e telefone celular e FAX.  
