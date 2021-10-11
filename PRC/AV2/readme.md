@@ -18,6 +18,7 @@ precisa usar arquivo (texto ou binario) no inicio do programa se o arquivo exist
 	quantidade : inteiro   
 
    No programa dever ser possivel realizar as seguintes operacoes:  
+
     1. inserir brinquedo  
 	dado o codigo do brinquedo veja se ele ja existe ou nao   
 		se ja existir solicite a quantidade e adicione a quantidade lida ao brinquedo ja existente  
