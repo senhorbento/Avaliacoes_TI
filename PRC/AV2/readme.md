@@ -10,16 +10,14 @@ Cada contato tem: Nome, email e telefone
 precisa usar arquivo (texto ou binario) no inicio do programa se o arquivo existir este deve ser lido e no final deve ser gravado (ref: aula-2020-11-04-Eleicao-parte 4 - arqTxt.c).  
 
 2-(3.0) Sua empresa foi contratada para fazer um programa para controlar o estoque de uma loja de brinquedos.  
-~~~
-   Para cada brinquedo temos:  
-	codigo: inteiro, 
-	categoria : string[20], 
-	nome : string[30], 
-	preco : real, 
-	quantidade : inteiro  
-~~~
+   Para cada brinquedo temos:   
+	codigo: inteiro,  
+	categoria : string[20],  
+	nome : string[30],  
+	preco : real,  
+	quantidade : inteiro   
 
-   no programa dever ser possivel realizar as seguintes operacoes:
+   No programa dever ser possivel realizar as seguintes operacoes:  
     1. inserir brinquedo  
 	dado o codigo do brinquedo veja se ele ja existe ou nao   
 		se ja existir solicite a quantidade e adicione a quantidade lida ao brinquedo ja existente  
