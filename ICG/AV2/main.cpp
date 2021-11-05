@@ -1,46 +1,167 @@
 #include <GL/glut.h>
+#include <cstdio>
+#include <cmath>
 
-GLfloat angulo, aspecto, slices = 16, stacks = 16;
+//constantes
+#define M_PI 3.14159265358979323846
+#define _MAX_SIZE_ 20
+#define _VELOCIDADE_ 0.5
+#define _TAMANHO_BOLINHA_ _MAX_SIZE_ / 10
 
-int z = 10;
-int x = -50; 
-int c = 200; 
-int a = 0;
-int s = 0;
-int d = 0;
-int q = 0;
-int e = 0;
-int w = 1;
+//variaveis referentes a bolinha
+GLfloat aspecto, angulo;
+GLint slices = 16, stacks = 16;
+
+//variaveis manipulacao camera
+int eyex =     10;
+int eyey =     50;
+int eyez =     -200;
+int centerx =  0;
+int centery =  0;
+int centerz =  0;
+int upx =      1;
+int upy =      0;
+int upz =      0;
+
+//variaveis movimento/sentido da bolinha
+double movz = -18;
+double movx = 0;
+double movy = 0;
+char sentido = 'A';
 
 void inicializar() {
     GLclampf r, g, b, o;
     r = 0.3; g = 0.8; b = 1.0; o = 1.0;
     glClearColor(r, g, b, o); //cor de fundo
-    angulo = 45;
-    gluOrtho2D(-100, 100, -100, 100);
+    angulo = 40;
+    gluOrtho2D(-50, 50, -50, 50);
 }
 
+void quadrado(float v1[], float v2[], float v3[], float v4[]) {
+    glBegin(GL_LINE_LOOP);
+
+        glVertex3fv(v1);
+        glVertex3fv(v2);
+        glVertex3fv(v3);
+        glVertex3fv(v4);
+
+    glEnd();
+}
+
+void cubo(float d) {
+    float v1[3] = { -d,  d,  d };
+    float v2[3] = { -d, -d,  d };
+    float v3[3] = {  d, -d,  d };
+    float v4[3] = {  d,  d,  d };
+
+    float v5[3] = {  d,  d, -d };
+    float v6[3] = {  d, -d, -d };
+    float v7[3] = { -d, -d, -d };
+    float v8[3] = { -d,  d, -d };
+
+    // frontal
+    quadrado(v1, v2, v3, v4);
+
+    // lateral direita
+    quadrado(v4, v3, v6, v5);
+
+    // traseiro
+    quadrado(v5, v8, v7, v6);
+
+    //lateral esquerda
+    quadrado(v1, v8, v7, v2);
+
+    //topo
+    quadrado(v1, v4, v5, v8);
+
+    //base
+    quadrado(v2, v7, v6, v3);
+}
+
+void bolinha(double r) {
+    glPushMatrix();
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHT0);
+        glShadeModel(GL_SMOOTH);
+            glTranslated(movz, movy, movx);
+            glutSolidSphere(r, slices, stacks);
+        glDisable(GL_DEPTH_TEST);
+        glDisable(GL_LIGHTING);
+        glDisable(GL_LIGHT0);
+    glPopMatrix();    
+}
+    
+
 void desenhar() {
-    glClear(GL_COLOR_BUFFER_BIT);
-    glColor3f(0.5, 1, 0.7);
-
-    glPushMatrix();
-        glTranslated(-24, 12, -60);
-        glRotated(60, 1, 0, 0);
-        glRotated(angulo, 0, 0, 1);
-        glutWireSphere(10, slices, stacks); //Bola
-    glPopMatrix();
-
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glColor3f(0, 0, 0);
-
-    glPushMatrix();
-        glTranslated(-24, 12, -60);
-        glRotated(60, 1, 0, 0);
-        glRotated(angulo, 0, 0, 1);
-        glutWireCube(100);
-    glPopMatrix();
+        cubo(_MAX_SIZE_);
+        bolinha(_TAMANHO_BOLINHA_);
 
     glutSwapBuffers();
+}
+
+void colisao() {
+    if (sentido == 'A') {    
+        if (movz == (_MAX_SIZE_ * -1) - _TAMANHO_BOLINHA_) {
+            sentido = 'B';
+            movz+= _VELOCIDADE_;
+        }
+        else movz-= _VELOCIDADE_;
+    }
+    else if (sentido == 'B') {
+        if (movz == _MAX_SIZE_- _TAMANHO_BOLINHA_) sentido = 'C';
+        else movz+= _VELOCIDADE_;
+    }
+    else if (sentido == 'C') {
+        if (movx != _MAX_SIZE_ - _TAMANHO_BOLINHA_) {
+            movz-= _VELOCIDADE_;
+            movx+= _VELOCIDADE_;
+        }
+        else sentido = 'D';
+    }
+    else if (sentido == 'D') {
+        if (movx == (_MAX_SIZE_ * -1) + _TAMANHO_BOLINHA_) sentido = 'E';
+        else movx-= _VELOCIDADE_;
+    }
+    else if (sentido == 'E') {
+        if (movz != (_MAX_SIZE_*-1) + _TAMANHO_BOLINHA_) {
+            movz -= _VELOCIDADE_;
+            movx += _VELOCIDADE_;
+        }
+        else sentido = 'H';
+    }
+    else if (sentido == 'H') {
+        if (movy != (_MAX_SIZE_ * -1) + _TAMANHO_BOLINHA_) {
+            movy -= _VELOCIDADE_;
+            movz += _VELOCIDADE_;
+        }
+        else sentido = 'I';
+    }
+    else if (sentido == 'I') {
+        if (movz != _MAX_SIZE_ - _TAMANHO_BOLINHA_) {
+            movy += _VELOCIDADE_;
+            movz += _VELOCIDADE_;
+        }
+        else sentido = 'J';
+    }
+    else if (sentido == 'J') {
+        if (movy != _MAX_SIZE_ - _TAMANHO_BOLINHA_) {
+            movy += _VELOCIDADE_;
+            movz -= _VELOCIDADE_;
+        }
+        else sentido = 'K';
+    }
+    else if (sentido == 'K') {
+        if (movz != (_MAX_SIZE_ * -1) + _TAMANHO_BOLINHA_) {
+            movy -= _VELOCIDADE_;
+            movz -= _VELOCIDADE_;
+        }
+        else sentido = 'B';
+    }
+    //mostra a posição da bolinha no console
+    printf("%.2lf %.2lf %.2lf\n",movz,movy,movx);
 }
 
 void ConfigurarVisualizacao() {
@@ -54,65 +175,47 @@ void ConfigurarVisualizacao() {
 
     glLoadIdentity();
 
-    gluLookAt(z, x, c, a, s, d, q, w, e);
+    gluLookAt(eyex,eyey,eyez,centerx,centery,centerz,upx,upy,upz);
 
 }
 
 void TeclaPressionada(unsigned char tecla, int x, int y) {
     switch (tecla) {
-    case 'z':
-        z += 10;
-        break;
-    case 'x':
-        x += 10;
-        break;
-    case 'c':
-        c += 10;
-        break;
-    case 'a':
-        z += 10;
+    case 'w':
+        centerx +=10;
         break;
     case 's':
-        s += 10;
-        break;
-    case 'd':
-        d += 10;
+        centerx -=10;
         break;
     case 'q':
-        q += 10;
+        centery +=10;
         break;
-    case 'w':
-        w += 10;
+    case 'a':
+        centery -=10;
         break;
     case 'e':
-        e += 10;
+        centerz+=10;
         break;
-    case 'b':
-        z -= 10;
+    case 'd':
+        centerz-=10;
         break;
-    case 'n':
-        x -= 10;
+    case 'r':
+        eyex += 10;
         break;
-    case 'm':
-        c -= 10;
-        break;
-    case 'g':
-        z -= 10;
-        break;
-    case 'h':
-        s -= 10;
-        break;
-    case 'j':
-        d -= 10;
+    case 'f':
+        eyex -= 10;
         break;
     case 't':
-        q -= 10;
+        eyey += 10;
+        break;
+    case 'g':
+        eyey -= 10;
         break;
     case 'y':
-        w -= 10;
+        eyez += 10;
         break;
-    case 'u':
-        e -= 10;
+    case 'h':
+        eyez -= 10;
         break;
     }
     ConfigurarVisualizacao();
@@ -130,29 +233,27 @@ void AlterarTamanhoJanela(GLsizei w, GLsizei h){
 }
 
 void EventoMouse(int button, int state, int x, int y) {
-    if (button == GLUT_LEFT_BUTTON)
-        if (state == GLUT_DOWN) {
-            if (angulo >= 10) angulo -= 5;
-        }
-
-    if (button == GLUT_RIGHT_BUTTON)
-        if (state == GLUT_DOWN) {
-            if (angulo <= 130) angulo += 5;
-        }
-
+    //write code here
     ConfigurarVisualizacao();
     glutPostRedisplay();
 
 }
 
+void Timer(int value) {
+    colisao();
+    glutPostRedisplay();
+    glutTimerFunc(15, Timer, 1);
+}
+
 int main(int argc, char* argv[]) {
 
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(800, 600);
     glutInitWindowPosition(10, 10);
     glutCreateWindow("3D");
     glutDisplayFunc(desenhar);
+    glutTimerFunc(30, Timer, 1);
     glutReshapeFunc(AlterarTamanhoJanela);
     glutKeyboardFunc(TeclaPressionada);
     glutMouseFunc(EventoMouse);
