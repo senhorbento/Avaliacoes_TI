@@ -11,3 +11,7 @@ Aplicar as seguintes transformações no avião/automóvel: translação, rotaç
 Estas transformações devem ser executadas a partir de comandos do teclado.
 
 # AV2
+
+Criar algo fazendo o tratamento de colisão, textura e iluminação  
+
+Foi feito um cubo com uma bolinha batendo no centro dos 6 lados do cubo.  
