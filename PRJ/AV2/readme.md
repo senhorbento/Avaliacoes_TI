@@ -1,4 +1,4 @@
-Implementação de um PDV (Ponto de Venda)
+# PDV (Ponto de Venda)
 
 Uma empresa deseja registrar as vendas de produtos usando um PDV. A partir de uma análise,
 obteve-se os requisitos a seguir.
