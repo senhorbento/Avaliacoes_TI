@@ -1,8 +1,8 @@
 # PDV (Ponto de Venda)
 
 Uma empresa deseja registrar as vendas de produtos usando um PDV. A partir de uma análise,
-obteve-se os requisitos a seguir.
-Requisitos
+obteve-se os requisitos a seguir.  
+
 - Manter um cadastro produtos (inclusão, alteração, exclusão e consulta de produtos).
 - Manter um cadastro de clientes (inclusão, alteração, exclusão e consulta de clientes).
 - Registrar vendas. Uma venda pode ter mais de um item. A venda pode ser vinculada a um
