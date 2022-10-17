@@ -49,3 +49,12 @@ Um diretório com as avaliações, referentes a matérias de programação, feit
   
   Linguagem: C#
 </details>
+</details> 
+
+5º Semestre: [SMH](https://github.com/senhorbento/SMH)
+<details>
+  <summary>Detalhes da disciplina</summary>
+  Nome: Sistemas Multimídia e Hipermídia
+  
+  Linguagem: HTML + CSS
+</details>
