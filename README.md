@@ -18,20 +18,20 @@ Um diretório com as avaliações, referentes a matérias de programação, feit
   Linguagem: C++  
 </details>
 
-3º Semestre: [ICG](https://github.com/senhorbento/Avaliacoes_TI/tree/main/ICG) 
-<details>
-  <summary>Detalhes da disciplina</summary>
-  Nome: Introdução a Computação Gráfica
-
-  Linguagem: OpenGL em C++
-</details>
-
 3º Semestre: [PRJ](https://github.com/senhorbento/Avaliacoes_TI/tree/main/PRJ)  
 <details>
   <summary>Detalhes da disciplina</summary>
   Nome: Programação em Java
   
   Linguagem: Java
+</details>
+
+4º Semestre: [ICG](https://github.com/senhorbento/Avaliacoes_TI/tree/main/ICG) 
+<details>
+  <summary>Detalhes da disciplina</summary>
+  Nome: Introdução a Computação Gráfica
+
+  Linguagem: OpenGL em C++
 </details>
 
 4º Semestre: [TCD](https://github.com/senhorbento/Avaliacoes_TI/tree/main/TCD) 
@@ -49,7 +49,14 @@ Um diretório com as avaliações, referentes a matérias de programação, feit
   
   Linguagem: C#
 </details>
-</details> 
+
+4º Semestre: [SO2](https://github.com/senhorbento/API_REST_Agenda)
+<details>
+  <summary>Detalhes da disciplina</summary>
+  Nome: Sistemas Operacionais 2
+  
+  Linguagem: NodeJS + MongoDB
+</details>
 
 5º Semestre: [SMH](https://github.com/senhorbento/SMH)
 <details>
